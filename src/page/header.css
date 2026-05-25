@@ -1,0 +1,191 @@
+/* ── Top header ───────────────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  max-width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  border-bottom: var(--theme-container-border);
+  background-color: var(--background);
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--txt-color);
+  font-family: "Source Code Pro", monospace;
+  user-select: none;
+}
+
+.right-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.right-side input[type='search'] {
+  padding: 10px 12px 10px 36px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  max-width: 450px;
+  width: 100%;
+  color: var(--txt-color);
+  background: url('/search.png') no-repeat 10px center;
+  background-size: 16px;
+}
+
+/* ── Desktop FAB ──────────────────────────────────────────────────────────── */
+.create-btn-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #E3963E;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 9999;
+}
+
+.create-btn-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.create-btn-link {
+  text-decoration: none;
+}
+
+/* ── Bottom nav: hidden by default on ALL screen sizes ───────────────────── */
+.bottom-nav {
+  display: none;
+}
+
+/* ── Mobile bottom nav: only visible ≤ 450px ─────────────────────────────── */
+@media (max-width: 450px) {
+
+  .header {
+    border-bottom: none;
+    padding: 10px 20px;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .right-side {
+    flex: 1;
+    border: none;
+  }
+
+  .right-side input[type='search'] {
+    width: 100%;
+    max-width: none;
+    flex: 1;
+  }
+
+  /* hide setting icon — bottom nav handles navigation */
+  .header-setting-link {
+    display: none;
+  }
+
+  /* hide desktop FAB */
+  .desktop-fab {
+    display: none;
+  }
+
+  /* show bottom nav */
+  .bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background-color: var(--background);
+    border-top: var(--theme-container-border);
+    align-items: center;
+    justify-content: space-around;
+    z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* push page content above bottom nav */
+  .title-container {
+    padding-bottom: 80px;
+  }
+}
+
+/* ── Bottom nav items ─────────────────────────────────────────────────────── */
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  color: var(--card-p);
+  font-size: 10px;
+  font-family: "Source Code Pro", monospace;
+  flex: 1;
+  padding: 8px 0;
+  transition: color 0.15s;
+}
+
+.bottom-nav-item img {
+  height: 22px;
+  width: auto;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+
+.bottom-nav-item.active {
+  color: #E3963E;
+}
+
+.bottom-nav-item.active img {
+  opacity: 1;
+}
+
+/* ── Center + button ──────────────────────────────────────────────────────── */
+.bottom-nav-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.bottom-nav-plus {
+  width: 50px;
+  height: 50px;
+  background: #E3963E;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(227, 150, 62, 0.45);
+  margin-bottom: 10px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.bottom-nav-center:active .bottom-nav-plus {
+  transform: scale(0.93);
+  box-shadow: 0 2px 8px rgba(227, 150, 62, 0.3);
+}

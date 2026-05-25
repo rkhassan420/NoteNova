@@ -1,0 +1,190 @@
+.register-wraper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;  
+
+}
+
+
+.register-container {
+  width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9fafb;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #111827;
+}
+
+.register-container form div {
+  margin-bottom: 20px;
+}
+
+
+.register-container input {
+ 
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.register-container input:focus {
+  border-color: orange;  
+}
+
+.register-container button {
+  width: 100%;
+  padding: 15px;
+  background-color: #E3963E;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.reg-bottom{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    margin-top: 15px;
+    gap: 5px;
+}
+
+.reg-bottom p {
+ color: gray;  
+}
+
+.reg-bottom #reg-login{
+    color: #E3963E;
+}
+
+
+.password-container {
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+ 
+}
+
+.password-container input {
+  width: 100%;
+  padding: 16px;
+  padding-right: 60px; 
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+}
+
+.password-container button {
+  position: absolute;
+  right: 10px;
+  top: 30%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #3b82f6;
+  width: 10%;  
+}
+
+.forgot-title{
+
+  margin: 25px auto;
+  color: gray;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: justify;
+}
+
+.error, .resend-title{
+    font-size: 13px;
+    padding-left: 5px;
+    color: gray;
+}
+
+
+.resend-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.resend-btn{
+  cursor: pointer;
+  text-decoration: underline;
+  color: #E3963E;
+  font-size: 14px;
+}
+
+
+.new-pass{
+  margin-bottom: 15px;
+}
+
+
+
+@media (max-width: 470px) {
+  .register-wraper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;   
+    align-items: center;       
+    padding: 0;
+    background-color: #f9fafb;
+  }
+
+  .register-container {
+    width: 100%;              
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;          
+    box-shadow: none;          
+    padding: 20px;
+    background-color: transparent;
+  }
+
+  .reg-bottom p {
+ color: gray;  
+ font-size: 14px;
+}
+
+
+
+.password-container button {
+  right: 20px;
+ 
+}
+
+.login-forgot-btn{
+  font-size: 15px;
+}
+
+
+.error, .resend-title{
+    font-size: 10px;
+    
+}
+
+
+ 
+
+
+}

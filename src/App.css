@@ -1,0 +1,337 @@
+.title-container{
+    margin-top: 80px;
+    box-sizing: border-box;
+    padding: 20px 35px;    
+}
+
+.title-container h2{
+    padding: 0 5px;
+    user-select: none;
+}
+
+/* ── Notes toolbar (title + sort dropdown) ────────────────────────────────── */
+.notes-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px 8px;
+}
+
+.sort-select {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: transparent;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  color: inherit;
+  font-family: "Source Code Pro", monospace;
+}
+
+.sort-select:focus {
+  border-color: #888;
+}
+
+.notes-container.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;  
+  box-sizing: border-box;
+  margin-top: 15px;
+  position: relative;
+}
+
+/* grid view */
+.notes-container.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.note-card {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 130px;
+  padding: 22px 25px;
+  border-radius: 10px;
+  background: var(--theme-container);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.note-card.grid{
+    min-height: 170px;
+}
+
+.note-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Pinned card ──────────────────────────────────────────────────────────── */
+.note-card.pinned {
+  border: 1.5px solid #aaa;
+}
+
+.pin-badge {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Title */
+.note-card h3 {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--txt-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+/* Body text — clamped to 3 lines */
+.note-card p,
+.note-body-preview {
+  flex: 1;
+  font-size: 15px;
+  color: var(--card-p);  
+  margin: 0 0 8px 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+  white-space: normal;
+}
+
+/* Date / time ago */
+.note-card small,
+.note-time-ago {
+  align-self: flex-end;
+  font-size: 11px;
+  color: #888;
+  user-select: none;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ── Long-press action bar ─────────────────────────────────────────────────── */
+.note-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 20px;
+  padding: 4px 8px;
+  backdrop-filter: blur(4px);
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px 4px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.action-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Color picker popover on note card ───────────────────────────────────── */
+.color-picker {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  background: rgba(30, 30, 30, 0.85);
+  border-radius: 12px;
+  padding: 8px 10px;
+  backdrop-filter: blur(6px);
+  z-index: 10;
+  max-width: 180px;
+}
+
+.color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+.color-dot:hover {
+  transform: scale(1.2);
+}
+
+.color-dot.active {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ── Skeleton loader ─────────────────────────────────────────────────────── */
+.loader-overlay.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 20px; 
+  box-sizing: border-box;
+}
+
+.loader-overlay.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.skeleton-card {
+  background: var(--theme-container);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton {
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(80, 80, 80, 0.2) 25%,
+    rgba(120, 120, 120, 0.4) 50%,
+    rgba(80, 80, 80, 0.2) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton.title  { width: 60%; height: 18px; }
+.skeleton.body   { width: 100%; height: 14px; }
+.skeleton.body.short { width: 80%; }
+.skeleton.date   { width: 40%; height: 12px; margin-top: 6px; }
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@media (max-width: 450px) {
+
+  .title-container {
+    margin-top: 60px;     
+    padding: 8px 15px;    
+  }
+
+  .notes-container.list { gap: 13px; margin-top: 15px; }
+  .notes-container.grid { gap: 13px; }
+  .note-card.grid       { min-height: 130px; }
+  .note-card h3         { font-size: 15px; }
+  .note-card p          { font-size: 13px; }
+  .note-card small      { font-size: 11px; }
+}
+
+/* ── #9 Note card animations ─────────────────────────────────────────────── */
+@keyframes noteEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes noteExit {
+  from {
+    opacity: 1;
+    transform: scale(1);
+    max-height: 300px;
+    margin-bottom: 0;
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+    max-height: 0;
+    margin-bottom: -16px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.note-enter {
+  animation: noteEnter 0.28s ease both;
+}
+
+.note-exit {
+  animation: noteExit 0.32s ease forwards;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ── #10 Empty state ─────────────────────────────────────────────────────── */
+@keyframes emptyFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  animation: emptyFadeIn 0.4s ease both;
+  width: 100%;
+  grid-column: 1 / -1; /* span all grid columns in grid view */
+}
+
+.empty-svg {
+  width: 140px;
+  height: 140px;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.empty-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--txt-color);
+  margin: 0 0 8px;
+}
+
+.empty-subtitle {
+  font-size: 13px;
+  color: var(--card-p);
+  margin: 0;
+  max-width: 220px;
+  line-height: 1.6;
+}
