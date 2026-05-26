@@ -1,55 +1,70 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Source+Code+Pro:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap");
 
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    background-color: var(--background);
-    font-family: "Source Code Pro", monospace;
-    color: var(--txt-color);
+html, body {
+  background-color: var(--bg);
+  font-family: "Inter", sans-serif;
+  color: var(--txt);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-
-
-.light-theme{
-    --background:#f4f3f2;
-    --theme-container:white;
-    --txt-color:black;
-    --theme-container-border: 1px solid #ccc;
-    --date:gray;
-    --tolbar-hover: #f0f0f0;
-    --card-p:#444;
-        
+/* ── Design tokens ───────────────────────────────────────────────────────── */
+.light-theme {
+  --bg:               #f5f4f2;
+  --bg-secondary:     #eceae7;
+  --surface:          #ffffff;
+  --surface-hover:    #f7f6f4;
+  --border:           rgba(0, 0, 0, 0.08);
+  --border-strong:    rgba(0, 0, 0, 0.14);
+  --txt:              #1a1a1a;
+  --txt-secondary:    #6b6b6b;
+  --txt-muted:        #9a9a9a;
+  --accent:           #E3963E;
+  --accent-hover:     #d4832b;
+  --accent-soft:      rgba(227, 150, 62, 0.12);
+  --shadow-sm:        0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:        0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg:        0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06);
+  --radius-sm:        6px;
+  --radius-md:        10px;
+  --radius-lg:        14px;
+  --radius-xl:        20px;
 }
 
-.dark-theme{
-    --background:#1a1a1a;
-    --theme-container:#1e1e1e;
-    --txt-color:whitesmoke;
-    --theme-container-border: none;
-    --date:#888;
-    --tolbar-hover: #292929;
-    --card-p:#777;
+.dark-theme {
+  --bg:               #141414;
+  --bg-secondary:     #1c1c1c;
+  --surface:          #1f1f1f;
+  --surface-hover:    #272727;
+  --border:           rgba(255,255,255,0.07);
+  --border-strong:    rgba(255,255,255,0.12);
+  --txt:              #f0f0f0;
+  --txt-secondary:    #a0a0a0;
+  --txt-muted:        #606060;
+  --accent:           #E3963E;
+  --accent-hover:     #f0a84e;
+  --accent-soft:      rgba(227, 150, 62, 0.15);
+  --shadow-sm:        0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md:        0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg:        0 8px 24px rgba(0,0,0,0.5);
+  --radius-sm:        6px;
+  --radius-md:        10px;
+  --radius-lg:        14px;
+  --radius-xl:        20px;
 }
 
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--txt-muted); }
 
+/* ── Focus ring ──────────────────────────────────────────────────────────── */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-::-webkit-scrollbar{
-    width: 8px;
-}   
-
-::-webkit-scrollbar-track {
-    background-color: #f1f1f1; 
-       
-  }
-
-::-webkit-scrollbar-thumb{
-   background-color: #888;	   
-   border-radius: 12px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #555; 
-}
-
+/* ── Selection ───────────────────────────────────────────────────────────── */
+::selection { background: var(--accent-soft); color: var(--txt); }

@@ -7,7 +7,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../theme/ThemeContext";
 
-// ── Top header: used on home page only ────────────────────────────────────
 const Header = ({ searchTerm, setSearchTerm }) => {
   const { theme } = useContext(ThemeContext);
   const isDark = theme === "dark-theme";
@@ -16,19 +15,19 @@ const Header = ({ searchTerm, setSearchTerm }) => {
     <header className="header">
       <h3 className="title">Notes</h3>
       <div className="right-side">
-        <input
-          type="search"
-          placeholder="Search notes"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        {/* hide setting icon on mobile — bottom nav handles it */}
+        <div className="search-wrapper">
+          <input
+            type="search"
+            placeholder="Search notes..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
         <Link to="/setting" className="header-setting-link">
           <img
-            title="Setting"
+            title="Settings"
             src={isDark ? white_setting : setting}
             alt="Settings"
-            height="30px"
           />
         </Link>
       </div>
@@ -38,42 +37,32 @@ const Header = ({ searchTerm, setSearchTerm }) => {
 
 export default Header;
 
-
-// ── Bottom nav: exported separately, mounted once in main.jsx ─────────────
 export const BottomNav = () => {
   const { theme } = useContext(ThemeContext);
   const location = useLocation();
   const isDark = theme === "dark-theme";
 
   return (
-    <>
-      {/* Desktop floating + button */}
-      <Link to="/New-Note" className="create-btn-link desktop-fab">
-        <button className="create-btn-float">+</button>
+    <nav className="bottom-nav">
+      <Link
+        to="/"
+        className={`bottom-nav-item ${location.pathname === "/" ? "active" : ""}`}
+      >
+        <img src={isDark ? white_home : home} alt="Home" />
+        <span>Home</span>
       </Link>
 
-      {/* Mobile bottom nav */}
-      <nav className="bottom-nav">
-        <Link
-          to="/"
-          className={`bottom-nav-item ${location.pathname === "/" ? "active" : ""}`}
-        >
-          <img src={isDark ? white_home : home} alt="Home" />
-          <span>Home</span>
-        </Link>
+      <Link to="/New-Note" className="bottom-nav-item bottom-nav-center">
+        <div className="bottom-nav-plus">+</div>
+      </Link>
 
-        <Link to="/New-Note" className="bottom-nav-item bottom-nav-center">
-          <div className="bottom-nav-plus">+</div>
-        </Link>
-
-        <Link
-          to="/setting"
-          className={`bottom-nav-item ${location.pathname === "/setting" ? "active" : ""}`}
-        >
-          <img src={isDark ? white_setting : setting} alt="Settings" />
-          <span>Settings</span>
-        </Link>
-      </nav>
-    </>
+      <Link
+        to="/setting"
+        className={`bottom-nav-item ${location.pathname === "/setting" ? "active" : ""}`}
+      >
+        <img src={isDark ? white_setting : setting} alt="Settings" />
+        <span>Settings</span>
+      </Link>
+    </nav>
   );
 };

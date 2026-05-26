@@ -276,26 +276,20 @@ const NewNote = () => {
       {/* ── Toolbar ── */}
       <div className="editor-toolbar">
         <button
-          onClick={() => setBold((v) => !v)}
-          style={{ fontWeight: bold ? "bold" : "normal" }}
-          title="Bold"
-        >
-          B
-        </button>
-        <button
-          onClick={() => setItalic((v) => !v)}
-          style={{ fontStyle: italic ? "italic" : "normal" }}
-          title="Italic"
-        >
-          I
-        </button>
-        <button
-          onClick={() => setUnderline((v) => !v)}
-          style={{ textDecoration: underline ? "underline" : "none" }}
-          title="Underline"
-        >
-          U
-        </button>
+  onClick={() => setBold(v => !v)}
+  className={bold ? "active" : ""}
+  title="Bold"
+>B</button>
+       <button
+  onClick={() => setBold(v => !v)}
+  className={bold ? "active" : ""}
+  title="Bold"
+>I</button>
+       <button
+  onClick={() => setBold(v => !v)}
+  className={bold ? "active" : ""}
+  title="Bold"
+>U</button>
       </div>
 
       {/* ── Editor ── */}

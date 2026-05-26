@@ -2,7 +2,7 @@ import { lazy, useState, useEffect, useRef, useCallback } from "react";
 import "./App.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import useNotes from "./hooks/useNotes";
 import { timeAgo } from "./utils/formatDate";
 import {
@@ -28,67 +28,41 @@ const NOTE_COLORS = [
   { label: "Pink",    value: "#f0b3d9" },
 ];
 
-// ── #10 Empty state illustration ───────────────────────────────────────────
 const EmptyState = ({ filtered }) => (
   <div className="empty-state">
-    <svg
-      className="empty-svg"
-      viewBox="0 0 160 160"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* notebook body */}
+    <svg className="empty-svg" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="28" y="20" width="104" height="124" rx="10"
-        fill="var(--theme-container)"
-        stroke="var(--txt-color)" strokeOpacity="0.12" strokeWidth="1.5" />
-      {/* spine */}
+        fill="var(--surface)" stroke="var(--txt)" strokeOpacity="0.1" strokeWidth="1.5" />
       <rect x="28" y="20" width="16" height="124" rx="10"
-        fill="var(--txt-color)" fillOpacity="0.06" />
-      {/* rings */}
+        fill="var(--txt)" fillOpacity="0.05" />
       {[38, 56, 74, 92, 110].map((y) => (
         <circle key={y} cx="36" cy={y} r="4"
-          fill="var(--background)"
-          stroke="var(--txt-color)" strokeOpacity="0.2" strokeWidth="1.2" />
+          fill="var(--bg)" stroke="var(--txt)" strokeOpacity="0.15" strokeWidth="1.2" />
       ))}
-      {/* lines */}
       {filtered ? (
         <>
-          <rect x="54" y="52" width="62" height="7" rx="3.5" fill="var(--txt-color)" fillOpacity="0.1" />
-          <rect x="54" y="67" width="44" height="7" rx="3.5" fill="var(--txt-color)" fillOpacity="0.07" />
-          <rect x="54" y="82" width="52" height="7" rx="3.5" fill="var(--txt-color)" fillOpacity="0.07" />
-          {/* magnifying glass */}
-          <circle cx="104" cy="112" r="14"
-            fill="var(--background)"
-            stroke="#E3963E" strokeWidth="2.5" strokeOpacity="0.7" />
-          <line x1="114" y1="122" x2="122" y2="130"
-            stroke="#E3963E" strokeWidth="2.5" strokeLinecap="round" strokeOpacity="0.7" />
-          <line x1="99" y1="107" x2="109" y2="117"
-            stroke="#E3963E" strokeWidth="1.5" strokeOpacity="0.3" strokeLinecap="round" />
+          <rect x="54" y="52" width="62" height="7" rx="3.5" fill="var(--txt)" fillOpacity="0.09" />
+          <rect x="54" y="67" width="44" height="7" rx="3.5" fill="var(--txt)" fillOpacity="0.06" />
+          <rect x="54" y="82" width="52" height="7" rx="3.5" fill="var(--txt)" fillOpacity="0.06" />
+          <circle cx="104" cy="112" r="14" fill="var(--bg)" stroke="#E3963E" strokeWidth="2.5" strokeOpacity="0.75" />
+          <line x1="114" y1="122" x2="122" y2="130" stroke="#E3963E" strokeWidth="2.5" strokeLinecap="round" strokeOpacity="0.75" />
         </>
       ) : (
         <>
-          <rect x="54" y="52" width="62" height="7" rx="3.5" fill="var(--txt-color)" fillOpacity="0.1" />
-          <rect x="54" y="67" width="44" height="7" rx="3.5" fill="var(--txt-color)" fillOpacity="0.07" />
-          <rect x="54" y="82" width="52" height="7" rx="3.5" fill="var(--txt-color)" fillOpacity="0.07" />
-          <rect x="54" y="97" width="34" height="7" rx="3.5" fill="var(--txt-color)" fillOpacity="0.05" />
-          {/* plus button */}
-          <circle cx="114" cy="118" r="18" fill="#E3963E" fillOpacity="0.15" />
-          <circle cx="114" cy="118" r="14" fill="#E3963E" fillOpacity="0.85" />
-          <line x1="114" y1="112" x2="114" y2="124"
-            stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-          <line x1="108" y1="118" x2="120" y2="118"
-            stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+          <rect x="54" y="52" width="62" height="7" rx="3.5" fill="var(--txt)" fillOpacity="0.09" />
+          <rect x="54" y="67" width="44" height="7" rx="3.5" fill="var(--txt)" fillOpacity="0.06" />
+          <rect x="54" y="82" width="52" height="7" rx="3.5" fill="var(--txt)" fillOpacity="0.06" />
+          <rect x="54" y="97" width="34" height="7" rx="3.5" fill="var(--txt)" fillOpacity="0.04" />
+          <circle cx="114" cy="118" r="18" fill="#E3963E" fillOpacity="0.12" />
+          <circle cx="114" cy="118" r="14" fill="#E3963E" fillOpacity="0.88" />
+          <line x1="114" y1="112" x2="114" y2="124" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="108" y1="118" x2="120" y2="118" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
         </>
       )}
     </svg>
-
-    <p className="empty-title">
-      {filtered ? "No matching notes" : "No notes yet"}
-    </p>
+    <p className="empty-title">{filtered ? "No matching notes" : "No notes yet"}</p>
     <p className="empty-subtitle">
-      {filtered
-        ? "Try a different search term or clear the filter"
-        : "Tap + to write your first note"}
+      {filtered ? "Try a different search term" : "Tap + to write your first note"}
     </p>
   </div>
 );
@@ -212,6 +186,11 @@ function App() {
         style={isMobile ? { bottom: "74px" } : {}}
       />
 
+      {/* ── Desktop FAB: only on home page ── */}
+      <Link to="/New-Note" className="create-btn-link desktop-fab">
+        <button className="create-btn-float">+</button>
+      </Link>
+
       <div className="title-container">
 
         {/* ── Toolbar ── */}
@@ -231,21 +210,7 @@ function App() {
 
         <div className={`notes-container ${viewMode}`}>
 
-          {/* ── Skeleton loader ── */}
-          {loading && (
-            <div className={`loader-overlay ${viewMode}`}>
-              {[0, 1].map((i) => (
-                <div key={i} className="skeleton-card">
-                  <div className="skeleton title" />
-                  <div className="skeleton body" />
-                  <div className="skeleton body short" />
-                  <div className="skeleton date" />
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* ── #10 Empty states with illustration ── */}
+          {/* ── Empty states ── */}
           {!loading && notes.length === 0 && (
             <EmptyState filtered={false} />
           )}

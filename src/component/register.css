@@ -1,190 +1,213 @@
+/* ── Page wrapper ────────────────────────────────────────────────────────── */
 .register-wraper {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: whitesmoke;  
-
+  background-color: var(--bg, #f5f4f2);
+  padding: 24px 16px;
 }
 
-
+/* ── Card ────────────────────────────────────────────────────────────────── */
 .register-container {
-  width: 400px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #f9fafb;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface, #ffffff);
+  border-radius: 16px;
+  border: 1px solid var(--border, rgba(0,0,0,0.08));
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  padding: 36px 32px 28px;
 }
 
 .register-container h2 {
   text-align: center;
-  margin-bottom: 25px;
-  color: #111827;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--txt, #1a1a1a);
+  margin-bottom: 28px;
+  letter-spacing: -0.3px;
+  font-family: "Inter", sans-serif;
 }
 
+/* ── Form fields ─────────────────────────────────────────────────────────── */
 .register-container form div {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
-
 
 .register-container input {
- 
   box-sizing: border-box;
   width: 100%;
-  padding: 15px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border-strong, rgba(0,0,0,0.14));
+  border-radius: 10px;
   outline: none;
-  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  color: var(--txt, #1a1a1a);
+  background: var(--bg, #f5f4f2);
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
+
+.register-container input::placeholder { color: var(--txt-muted, #9a9a9a); }
 
 .register-container input:focus {
-  border-color: orange;  
+  border-color: #E3963E;
+  box-shadow: 0 0 0 3px rgba(227,150,62,0.12);
+  background: var(--surface, #fff);
 }
 
-.register-container button {
+/* ── Submit button ───────────────────────────────────────────────────────── */
+.register-container > form > button[type="submit"],
+.register-container button[type="submit"] {
   width: 100%;
-  padding: 15px;
-  background-color: #E3963E;
+  padding: 13px;
+  background: #E3963E;
   color: #fff;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 14.5px;
+  font-family: "Inter", sans-serif;
   border: none;
-  border-radius: 25px;
+  border-radius: 10px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 8px;
+  transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(227, 150, 62, 0.3);
+  letter-spacing: 0.1px;
 }
 
-.reg-bottom{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-    margin-top: 15px;
-    gap: 5px;
+.register-container button[type="submit"]:hover {
+  background: #d4832b;
+  box-shadow: 0 4px 14px rgba(227, 150, 62, 0.4);
 }
 
-.reg-bottom p {
- color: gray;  
-}
+.register-container button[type="submit"]:active { transform: scale(0.98); }
+.register-container button[type="submit"]:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
-.reg-bottom #reg-login{
-    color: #E3963E;
-}
-
-
-.password-container {
-  position: relative; 
+/* ── Bottom link ─────────────────────────────────────────────────────────── */
+.reg-bottom {
   display: flex;
-  flex-direction: column;
   justify-content: center;
- 
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.reg-bottom p { font-size: 13.5px; color: var(--txt-muted, #9a9a9a); }
+
+.reg-bottom #reg-login {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #E3963E;
+  text-decoration: none;
+  transition: color 0.12s;
+}
+
+.reg-bottom #reg-login:hover { color: #d4832b; }
+
+/* ── Password field ──────────────────────────────────────────────────────── */
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .password-container input {
-  width: 100%;
-  padding: 16px;
-  padding-right: 60px; 
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  outline: none;
+  padding-right: 48px;
 }
 
 .password-container button {
   position: absolute;
-  right: 10px;
-  top: 30%;
+  right: 12px;
+  top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
-  color: #3b82f6;
-  width: 10%;  
-}
-
-.forgot-title{
-
-  margin: 25px auto;
-  color: gray;
-  font-size: 13px;
-  line-height: 20px;
-  text-align: justify;
-}
-
-.error, .resend-title{
-    font-size: 13px;
-    padding-left: 5px;
-    color: gray;
-}
-
-
-.resend-container{
+  padding: 4px;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  margin-top: 0;
+  box-shadow: none;
+  border-radius: 4px;
+  transition: opacity 0.15s;
+  opacity: 0.55;
+}
+
+.password-container button:hover { opacity: 1; background: none; box-shadow: none; transform: translateY(-50%); }
+.password-container button img { height: 18px; display: block; }
+
+/* ── Messages ────────────────────────────────────────────────────────────── */
+.error {
+  font-size: 12px;
+  color: #e05555;
+  padding: 0 2px;
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  margin-top: 4px;
+  display: block;
+}
+
+/* ── Forgot / verify helpers ─────────────────────────────────────────────── */
+.forgot-title {
+  font-size: 13px;
+  color: var(--txt-muted, #9a9a9a);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+
+.resend-container {
+  display: flex;
   align-items: center;
   gap: 5px;
+  margin: 8px 0;
 }
 
-.resend-btn{
+.resend-title {
+  font-size: 12.5px;
+  color: var(--txt-muted, #9a9a9a);
+  font-family: "Inter", sans-serif;
+}
+
+.resend-btn {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #E3963E;
   cursor: pointer;
   text-decoration: underline;
-  color: #E3963E;
-  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  transition: color 0.12s;
 }
 
+.resend-btn:hover { color: #d4832b; }
 
-.new-pass{
-  margin-bottom: 15px;
+.login-forgot-btn {
+  font-size: 13px;
+  color: var(--txt-muted, #9a9a9a);
+  font-family: "Inter", sans-serif;
+  transition: color 0.12s;
 }
 
+.login-forgot-btn:hover { color: #E3963E; }
 
+.new-pass { margin-bottom: 14px; }
 
+/* ── Responsive ──────────────────────────────────────────────────────────── */
 @media (max-width: 470px) {
-  .register-wraper {
-    height: 100vh;
-    display: flex;
-    justify-content: center;   
-    align-items: center;       
-    padding: 0;
-    background-color: #f9fafb;
-  }
-
+  .register-wraper { padding: 0; align-items: stretch; }
   .register-container {
-    width: 100%;              
     max-width: 100%;
-    margin: 0;
-    border-radius: 0;          
-    box-shadow: none;          
-    padding: 20px;
-    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    padding: 48px 24px 32px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-
-  .reg-bottom p {
- color: gray;  
- font-size: 14px;
-}
-
-
-
-.password-container button {
-  right: 20px;
- 
-}
-
-.login-forgot-btn{
-  font-size: 15px;
-}
-
-
-.error, .resend-title{
-    font-size: 10px;
-    
-}
-
-
- 
-
-
 }

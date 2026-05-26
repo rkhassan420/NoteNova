@@ -1,228 +1,225 @@
+/* ── Container: full width ────────────────────────────────────────────────── */
 .editor-container {
+  width: 100%;
   max-width: 100%;
-  margin: auto;
-  padding: 15px;
-  font-family: "Source Code Pro", monospace; 
-  height: 100vh;
+  padding: 0 48px 40px;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* ── Header ───────────────────────────────────────────────────────────────── */
 .editor-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
-  margin-top: 25px;     
+  align-items: center;
+  padding: 14px 0 12px;
+  margin-top: 60px;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 50;
+  border-bottom: 1px solid var(--border);
 }
 
 .note-right-header {
   display: flex;
-  gap: 15px; 
+  align-items: center;
+  gap: 4px;
 }
 
 .editor-header button {
-  padding: 8px 8px;
-  border: none;   
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  background-color: transparent; 
+  background: transparent;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.editor-header button img {
-  height: 20px;
-}
+.editor-header button:hover { background: var(--surface-hover); }
+.editor-header button:active { background: var(--bg-secondary); transform: scale(0.94); }
+.editor-header button img { height: 20px; width: 20px; object-fit: contain; display: block; }
 
 /* ── Toolbar ──────────────────────────────────────────────────────────────── */
 .editor-toolbar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 15px; 
-  padding-left: 12px;
+  gap: 6px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
 }
 
 .editor-toolbar button {
-  padding: 5px 10px;
-  border: var(--theme-container-border);
-  background-color: var(--theme-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
-  font-weight: bold;
-  color: var(--txt-color);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--txt-secondary);
+  font-family: "Inter", sans-serif;
+  transition: background 0.12s, border-color 0.12s, color 0.12s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .editor-toolbar button:hover {
-  background: var(--tolbar-hover);
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+  color: var(--txt);
+}
+
+.editor-toolbar button:active { transform: scale(0.9); }
+
+.editor-toolbar button.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* ── Dropdown menu ────────────────────────────────────────────────────────── */
-.menu-wrapper {
-  position: relative;
-}
+.menu-wrapper { position: relative; }
 
 .dropdown-menu {
   position: absolute;
   right: 0;
-  top: 40px;
-  background: #1a1a1a;
-  border: 1px solid #ccc;
-  border-radius: 6px;  
+  top: calc(100% + 6px);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
-  min-width: 160px;
-  z-index: 10;
+  min-width: 175px;
+  z-index: 100;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: dropDown 0.16s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+@keyframes dropDown {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .dropdown-menu button {
-  padding: 12px;
+  padding: 12px 16px;
   text-align: left;
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 14px;
-}
-
-/* ── Editor fields ────────────────────────────────────────────────────────── */
-.editor-title {  
+  font-size: 13.5px;
+  font-family: "Inter", sans-serif;
+  color: var(--txt);
+  transition: background 0.12s;
   width: 100%;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 16px;
-  margin-bottom: 20px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dropdown-menu button:hover { background: var(--surface-hover); }
+
+.dropdown-menu button:last-child {
+  color: #e05555;
+  border-top: 1px solid var(--border);
+}
+
+.dropdown-menu button:last-child:hover { background: rgba(224,85,85,0.07); }
+
+/* ── Title input ──────────────────────────────────────────────────────────── */
+.editor-title {
+  width: 100%;
+  font-size: 26px;
+  font-weight: 700;
+  padding: 22px 0 8px;
   border: none;
-  color: var(--txt-color);
-  background-color: transparent;
-  font-family: "Source Code Pro", monospace; 
-  outline: none;  
-}
-
-.note-date {
-  padding: 0px 16px;
-  font-size: 13px;
-  color: var(--date);
-  user-select: none;
-}
-
-.body-full {  
-  display: flex;
-  gap: 10px; 
-  margin-top: 10px;
-  flex: 1;
-}
-
-.editor-body {
-  height: 100%;
-  border: none;
-  padding: 15px;
-  font-size: 15px;
-  resize: none;
-  font-family: "Source Code Pro", monospace;   
-  flex: 1;
-  line-height: 30px;
-  color: var(--txt-color);
-  background-color: transparent;
+  color: var(--txt);
+  background: transparent;
+  font-family: "Inter", sans-serif;
   outline: none;
+  letter-spacing: -0.4px;
+  line-height: 1.3;
+  box-sizing: border-box;
 }
 
-.editor-title,
-.body-full,
+.editor-title::placeholder { color: var(--txt-muted); }
+
+/* ── Date ─────────────────────────────────────────────────────────────────── */
+.note-date {
+  font-size: 12px;
+  color: var(--txt-muted);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+  font-family: "Inter", sans-serif;
+}
+
+/* ── Body ─────────────────────────────────────────────────────────────────── */
+.body-full {
+  display: flex;
+  flex: 1;
+  margin-top: 4px;
+}
+
 .editor-body {
+  flex: 1;
+  border: none;
+  padding: 18px 0;
+  font-size: 15.5px;
+  resize: none;
+  font-family: "Source Code Pro", monospace;
+  line-height: 1.85;
+  color: var(--txt);
+  background: transparent;
+  outline: none;
+  min-height: 420px;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* ── Word & char count footer ─────────────────────────────────────────────── */
+.editor-body::placeholder { color: var(--txt-muted); }
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
 .editor-footer {
   display: flex;
   justify-content: flex-end;
   gap: 16px;
-  padding: 6px 16px 12px;
-  font-size: 12px;
-  color: #888;
-  border-top: 1px solid rgba(128, 128, 128, 0.2);
-  font-family: "Source Code Pro", monospace;
+  padding: 10px 0 6px;
+  font-size: 11.5px;
+  color: var(--txt-muted);
+  border-top: 1px solid var(--border);
+  font-family: "Inter", sans-serif;
   user-select: none;
 }
 
-/* ── Image helpers (kept for future use) ──────────────────────────────────── */
-.file-upload {
-  display: inline-block;
-  padding: 8px 12px;
-  border: var(--theme-container-border);
-  border-radius: 6px;
-  cursor: pointer;
-  background: var(--theme-container);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--txt-color);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.file-upload input { display: none; }
-.file-upload:hover { background: var(--tolbar-hover); }
-
-.editor-right {
-  flex: 3;
-  max-height: 65vh;
-  overflow-y: auto;
-}
-
-.image-preview {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.image-preview img {
-  width: 100%;
-  max-height: 250px;
-  object-fit: contain;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.image-modal {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.image-modal img {
-  max-width: 90%; max-height: 90%;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
-
 /* ── Responsive ───────────────────────────────────────────────────────────── */
-@media (max-width: 860px) {
-  .image-preview { gap: 5px; }
-  .image-preview img { max-height: 130px; }
+@media (max-width: 900px) {
+  .editor-container { padding: 0 32px 32px; }
 }
 
-@media (max-width: 550px) {
-  .body-full { flex-direction: column; }
-  .editor-body { height: auto; min-height: 500px; flex: none; }
-  .editor-right { max-height: none; overflow-y: visible; }
-  .image-preview {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 10px;
-  }
+@media (max-width: 600px) {
+  .editor-container { padding: 0 18px 24px; }
+  .editor-header    { margin-top: 54px; padding: 10px 0 10px; }
+  .editor-title     { font-size: 20px; padding: 16px 0 6px; }
+  .editor-body      { font-size: 14px; line-height: 1.75; min-height: 320px; }
 }
 
-@media (max-width: 400px) {
-  .editor-toolbar       { gap: 5px; margin-bottom: 10px; }
-  .file-upload          { padding: 8px 12px; font-size: 12px; }
-  .editor-toolbar button{ padding: 3px 8px; height: 36px; }
-  .editor-title         { font-size: 14px; padding: 15px 12px; margin-bottom: 17px; }
-  .editor-body          { padding: 16px 14px; font-size: 13px; line-height: 24px; }
-
-  .editor-footer        { font-size: 11px; gap: 10px; padding: 5px 12px 10px; }
+@media (max-width: 450px) {
+  .editor-container { padding: 0 14px 90px; }
+  .editor-toolbar   { gap: 5px; }
+  .editor-toolbar button { width: 33px; height: 33px; font-size: 12.5px; }
+  .editor-title     { font-size: 18px; }
+  .editor-body      { font-size: 13.5px; }
+  .editor-footer    { font-size: 11px; }
+  .dropdown-menu    { min-width: 155px; }
 }
