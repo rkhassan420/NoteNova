@@ -1,9 +1,18 @@
 # 📝 Note - Nova 
 
 A fast, modern, full-stack note-taking web application built with **React + Django REST Framework**.  
-Features JWT authentication, real-time search, offline-aware caching, and a premium responsive UI that works beautifully on every device.
+Features JWT authentication, real-time search, and a premium responsive UI that works beautifully on every device.
 
 🌐 **Live Demo:** https://ahnotes.netlify.app
+
+---
+
+# 📸 Screenshots
+
+[Home](./screenshot/home.png)
+[Editor](./screenshot/editor.png)
+[Editor](./screenshot/setting.png)
+[Dark Theme](./screenshot/dark.png)
 
 ---
 
@@ -127,7 +136,6 @@ src/
 
 ## 📌 Prerequisites
 
-- Node.js 18+
 - Python 3.10+
 - PostgreSQL
 
@@ -137,7 +145,7 @@ src/
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/ah-notes.git
+git clone https://github.com/rkhassan420/ah-notes.git
 
 # Go to project
 cd ah-notes
@@ -164,113 +172,6 @@ Build production version:
 npm run build
 ```
 
----
-
-# 🐍 Backend Setup (Django)
-
-```bash
-# Clone backend repo
-git clone https://github.com/your-username/ah-notes-api.git
-
-# Go to backend
-cd ah-notes-api
-
-# Create virtual environment
-python -m venv venv
-```
-
-Activate virtual environment:
-
-### Windows
-```bash
-venv\Scripts\activate
-```
-
-### Linux / Mac
-```bash
-source venv/bin/activate
-```
-
-Install requirements:
-
-```bash
-pip install -r requirements.txt
-```
-
-Create `.env` file:
-
-```env
-SECRET_KEY=your-secret-key
-
-DB_NAME=your-db-name
-DB_USER=your-db-user
-DB_PASSWORD=your-db-password
-DB_HOST=your-db-host
-DB_PORT=5432
-
-EMAIL_HOST_USER=your-email@gmail.com
-EMAIL_HOST_PASSWORD=your-app-password
-```
-
-Run migrations:
-
-```bash
-python manage.py migrate
-```
-
-Start server:
-
-```bash
-python manage.py runserver
-```
-
----
-
-# 🔑 Django JWT Configuration
-
-Add this inside `settings.py`:
-
-```python
-from datetime import timedelta
-
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
-    "ROTATE_REFRESH_TOKENS": True,
-    "BLACKLIST_AFTER_ROTATION": True,
-}
-
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
-
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-    ],
-}
-```
-
----
-
-# 🌐 API Endpoints
-
-| Method | Endpoint | Description | Auth |
-|---|---|---|---|
-| POST | `/register/` | Register user | ❌ |
-| POST | `/login/` | Login user | ❌ |
-| POST | `/token/refresh/` | Refresh JWT token | ❌ |
-| POST | `/forgot-password/` | Send OTP email | ❌ |
-| POST | `/verify/` | Verify OTP | ❌ |
-| POST | `/reset/` | Reset password | ❌ |
-| GET | `/notes/` | Get all notes | ✅ |
-| POST | `/notes/` | Create note | ✅ |
-| GET | `/notes/:id/` | Get single note | ✅ |
-| PUT | `/notes/:id/` | Update note | ✅ |
-| DELETE | `/notes/:id/` | Delete note | ✅ |
-| DELETE | `/users/:id/` | Delete account | ✅ |
-
----
 
 # 🧠 Key Architecture Decisions
 
@@ -348,28 +249,6 @@ CSS custom properties are used for consistent theming.
 
 ---
 
-# 🔒 Security Notes
-
-Never push secrets to GitHub.
-
-Add these to `.gitignore`:
-
-```gitignore
-.env
-.env.local
-*.env
-```
-
-Sensitive environment variables:
-
-```env
-SECRET_KEY
-DB_PASSWORD
-EMAIL_HOST_PASSWORD
-```
-
----
-
 # 📦 Dependencies
 
 ## Frontend
@@ -399,18 +278,6 @@ psycopg2-binary
 
 ---
 
-# 📸 Screenshots
-
-> Add your screenshots here
-
-```md
-![Home](./screenshots/home.png)
-![Editor](./screenshots/editor.png)
-![Dark Theme](./screenshots/dark.png)
-```
-
----
-
 # 🌟 Future Improvements
 
 - Rich text editor
@@ -427,14 +294,6 @@ psycopg2-binary
 
 # 🙋 Author
 
-## Ali Hassan
 
-Built with ❤️ using React & Django
+Built with ❤️ by Ali Hassan
 
----
-
-# 📄 License
-
-MIT License
-
-Free to use, modify, and distribute.
