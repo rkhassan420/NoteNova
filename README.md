@@ -9,10 +9,20 @@ Features JWT authentication, real-time search, and a premium responsive UI that 
 
 # 📸 Screenshots
 
-[Home](./screenshot/home.png)
-[Editor](./screenshot/editor.png)
-[Editor](./screenshot/setting.png)
-[Dark Theme](./screenshot/dark.png)
+## Home
+![Home](./screenshot/login.png)
+
+## Home
+![Home](./screenshot/home.png)
+
+## Editor
+![Editor](./screenshot/editor.png)
+
+## Settings
+![Settings](./screenshot/setting.png)
+
+## Dark Theme
+![Dark Theme](./screenshot/dark.png)
 
 ---
 
